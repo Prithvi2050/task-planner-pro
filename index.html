@@ -1,0 +1,114 @@
+<link rel="icon" href="data:,">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Planner</title>
+    
+    <!-- Google API JavaScript Client Library -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+    <div class="header-content">
+        <h1>📋 Task Planner Pro</h1>
+        <p class="tagline">Organize your day, sync with Google Calendar</p>
+    </div>
+</header>
+    <main>
+        <form id="taskForm">
+            <input type="text" id="title" placeholder="Task title" required>
+            <select id="priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <select id="size">
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+            <input type="date" id="dueDate">
+            <select id="status">
+                <option value="todo">To Do</option>
+                <option value="in-progress">In Progress</option>
+                <option value="done">Done</option>
+            </select>
+            <button type="submit">Add Task</button>
+        </form>
+        
+        <!-- NEW: Filter and Sort Controls -->
+        <div class="controls-panel">
+            <div class="filter-group">
+                <label>Filter by Status:</label>
+                <div class="status-filters">
+                    <button class="filter-btn active" data-status="all">All</button>
+                    <button class="filter-btn" data-status="todo">To Do</button>
+                    <button class="filter-btn" data-status="in-progress">In Progress</button>
+                    <button class="filter-btn" data-status="done">Done</button>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <label for="priorityFilter">Filter by Priority:</label>
+                <select id="priorityFilter">
+                    <option value="all">All Priorities</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="sortBy">Sort by:</label>
+                <select id="sortBy">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="dueDate">Due Date</option>
+                    <option value="priority">Priority</option>
+                </select>
+            </div>
+            
+            <button id="clearFilters" class="clear-btn">Clear Filters</button>
+        </div>
+
+        <section id="taskList">
+            <!-- Tasks will appear here dynamically -->
+        </section>
+            <div id="calendarSync">
+            <button id="authorizeBtn" style="display: none;">Connect Google Calendar</button>
+            <button id="syncBtn" style="display: none;">Sync Tasks to Calendar</button>
+            <button id="signoutBtn" style="display: none;">Sign Out</button>
+            <p id="syncStatus"></p>
+        </div>
+
+    </main>
+            <script src="script.js"></script>
+    
+    <!-- Simple callback bridges - just relay to calendar.js functions -->
+    <script>
+        function handleClientLoad() {
+            console.log('handleClientLoad called - waiting for calendar.js');
+            // This will be called by calendar.js once it loads
+        }
+        
+        function gisLoaded() {
+            console.log('gisLoaded called - waiting for calendar.js');
+            // This will be called by calendar.js once it loads
+        }
+    </script>
+    
+    <!-- Load external libraries with callbacks -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client"></script>
+    
+    <!-- Load calendar.js last - it will handle everything -->
+    <script src="calendar.js"></script>
+</body>
+
+</html>
